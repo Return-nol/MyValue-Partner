@@ -1,7 +1,3 @@
----
-stoplight-id: c686a10c972e1
----
-
 # Change Log
 All notable changes to this project will be documented in this file.
  
