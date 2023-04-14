@@ -122,19 +122,18 @@ Saat pengguna berhasil login/register di frontend BU, periksa status mapping use
 
 Untuk membuka halaman mapping MyValue, BU harus mengirimkan informasi pengguna. Setidaknya ada 7 data yang diperlukan untuk melakukan pemetaan di MyValue yang dijelaskan dalam tabel berikut.
 
-| Parameter                                             | Type   | Description                                                                  |
-| ----------------------------------------------------- | ------ | ---------------------------------------------------------------------------- |
-| user_id <span style="color:red;">required</span>      | String | BU user id                                                                   |
-| client_id <span style="color:red;">required</span>    | String | Client id BU                                                                 |
-| app_name <span style="color:red;">required</span>     | String | Nama aplikasi unit bisnis yang akan ditampilkan di halaman mapping MyValue                  |
-| full_name <span style="color:red;">required</span>    | String | Nama lengkap user                                  |
-| redirect_uri <span style="color:red;">required</span> | String | redirect uri yang telah didaftarkan                                                   |
-| fallback_uri <span style="color:red;">required</span> | String | Untuk user yang membatalkan proses mapping, akan diarahkan ke fallback uri ini |
-| state                                                 | String | State to prevent CSRF attacks                                                |
-| email                                                 | String | Email user                                      |
-| phone_number                                          | String | Nomer telepon user                                   |
+| Parameter                                  | Required           | Type   | Description                                                                  |
+| ---------------------------------------------|-------- | ------ | ---------------------------------------------------------------------------- |
+| user_id |<span style="color:red;">required</span>      | String | BU user id                                                                   |
+| client_id |<span style="color:red;">required</span>    | String | Client id BU                                                                 |
+| app_name |<span style="color:red;">required</span>     | String | Nama aplikasi unit bisnis yang akan ditampilkan di halaman mapping MyValue                  |
+| full_name |<span style="color:red;">required</span>    | String | Nama lengkap user                                  |
+| redirect_uri |<span style="color:red;">required</span> | String | redirect uri yang telah didaftarkan                                                   |
+| fallback_uri| <span style="color:red;">required</span> | String | Untuk user yang membatalkan proses mapping, akan diarahkan ke fallback uri ini |
+| state        |optional                                         | String | State to prevent CSRF attacks                                                |
+| email         |optional                                        | String | Email user                                      |
+| phone_number  |optional                                        | String | Nomer telepon user                                   |
 
-> [!NOTE]
 > Antara email dan nomor telepon minimal diberikan 1 data.
 
 Example:
