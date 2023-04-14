@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - external-myvalue.yaml initial data
 - CHANGELOG file
+- auth-myvalue.yaml initial data
+- add documentation in README
  
 ### Changed
  
