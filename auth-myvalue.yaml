@@ -186,9 +186,9 @@ paths:
                   value:
                     id: 7c9def0b-a6f2-4438-9f29-6855e48271ab
                     valueID: VR8EPN
-                    email: albertus@citis.kompasgramedia.com
+                    email: albert@citis.co.id
                     emailVerified: true
-                    mobilePhone: '6288975263768'
+                    mobilePhone: '6222222222222'
                     mobilePhoneVerified: true
                     active: true
                     setPassword: true
@@ -214,8 +214,8 @@ paths:
                         cardNumber: VR8EPN
                         outletCode: MVAPP00001
                         active: true
-                        email: albertus@citis.kompasgramedia.com
-                        mobilePhone: '6288975263768'
+                        email: albert@citis.co.id
+                        mobilePhone: '622'
                         membershipName: MyValue
                       - id: 2233962
                         memberNo: d56c918f1b945224f4a83c447da2d6af
@@ -229,7 +229,7 @@ paths:
                         cardNumber: SIP2194799
                         outletCode: '10106'
                         active: true
-                        email: albertus.ageng+90@gmail.com
+                        email: albert@citis.co.id
                         mobilePhone: '121311221'
                         membershipName: Santika Important Person
                       - id: 952468
@@ -237,7 +237,7 @@ paths:
                         cardNumber: '0145000407363577'
                         outletCode: '10000'
                         active: true
-                        email: albertus@citis.kompasgramedia.com
+                        email: albert@citis.co.id
                         mobilePhone: '34567865456'
                         membershipName: Gramedia
                       - id: 1357762
@@ -245,7 +245,7 @@ paths:
                         cardNumber: SIP1067866
                         outletCode: '0103839105'
                         active: true
-                        email: albertus.ageng+92@gmail.com
+                        email: albert@citis.co.id
                         mobilePhone: '456789111'
                         membershipName: Santika Important Person
                       - id: 2234559
@@ -269,9 +269,9 @@ paths:
                   Example 1:
                     id: 7c9def0b-a6f2-4438-9f29-6855e48271ab
                     valueID: VR8EPN
-                    email: albertus@citis.kompasgramedia.com
+                    email: albert@citis.co.id
                     emailVerified: true
-                    mobilePhone: '6288975263768'
+                    mobilePhone: '1312133312121'
                     mobilePhoneVerified: true
                     active: true
                     setPassword: true
@@ -297,8 +297,8 @@ paths:
                         cardNumber: VR8EPN
                         outletCode: MVAPP00001
                         active: true
-                        email: albertus@citis.kompasgramedia.com
-                        mobilePhone: '6288975263768'
+                        email: albert@citis.co.id
+                        mobilePhone: '2131212121231'
                         membershipName: MyValue
                       - id: 2233962
                         memberNo: d56c918f1b945224f4a83c447da2d6af
@@ -312,7 +312,7 @@ paths:
                         cardNumber: SIP2194799
                         outletCode: '10106'
                         active: true
-                        email: albertus.ageng+90@gmail.com
+                        email: albert@citis.co.id
                         mobilePhone: '121311221'
                         membershipName: Santika Important Person
                       - id: 952468
@@ -320,7 +320,7 @@ paths:
                         cardNumber: '0145000407363577'
                         outletCode: '10000'
                         active: true
-                        email: albertus@citis.kompasgramedia.com
+                        email: albert@citis.co.id
                         mobilePhone: '34567865456'
                         membershipName: Gramedia
                       - id: 1357762
@@ -328,14 +328,14 @@ paths:
                         cardNumber: SIP1067866
                         outletCode: '0103839105'
                         active: true
-                        email: albertus.ageng+92@gmail.com
+                        email: albert@citis.co.id
                         mobilePhone: '456789111'
                         membershipName: Santika Important Person
                       - id: 2234559
                         memberNo: id12
                         cardNumber: id12
                         active: true
-                        email: albert2@oval.id
+                        email: albert@citis.co.id
                         membershipName: MyValue Third Party
                       - id: 2235371
                         memberNo: grmd121311113113131

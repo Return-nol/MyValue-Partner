@@ -25,12 +25,12 @@ Dengan menyelesaikan dokumentasi ini, anda dapat
 
 ### Base URL
 
-Sandbox Environment adalah tempat dimana kamu dapat melakukan internal end-to-end testing menggunakan kredensial _MyValue Staging_. Ketika testing sudah selesai, kamu dapat menggunakan _Production Environment_ menggunakan kredensial _MyValue Production_.
+Sandbox Environment adalah tempat dimana kamu dapat melakukan internal end-to-end testing menggunakan kredensial _MyValue Staging_.
 
-| Type         | Sandbox                       | Production                   |
-| ------------ | ----------------------------- | ---------------------------- |
-| External API | https://external.ovaltech.id/ | https://external.myvalue.id/ |
-| SSO API      | https://auth.ovaltech.id/     | https://auth.ovaltech.id/    |
+| Type         | Sandbox                       | 
+| ------------ | ----------------------------- | 
+| External API | https://external.ovaltech.id/ | 
+| SSO API      | https://auth.ovaltech.id/     | 
 
 ### Authentication
 

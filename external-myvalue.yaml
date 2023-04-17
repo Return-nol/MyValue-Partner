@@ -68,10 +68,10 @@ paths:
                 x-examples:
                   Example 1:
                     id: 7c9def0b-a6f2-4438-9f29-6855e48271ab
-                    phone: '6288975263768'
+                    phone: '82818111212'
                     phoneVerified: true
                     enabled: true
-                    email: albertus@citis.kompasgramedia.com
+                    email: albert@citis.co.id
                     emailVerified: true
                     firstName: o l o l o l o l
                     lastName: o l o l o l o l
@@ -170,10 +170,10 @@ paths:
                 Example 1:
                   value:
                     id: 7c9def0b-a6f2-4438-9f29-6855e48271ab
-                    phone: '6288975263768'
+                    phone: '81281837128'
                     phoneVerified: true
                     enabled: true
-                    email: albertus@citis.kompasgramedia.com
+                    email: albert@citis.co.id
                     emailVerified: true
                     firstName: o l o l o l o l
                     lastName: o l o l o l o l
