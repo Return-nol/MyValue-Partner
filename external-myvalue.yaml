@@ -1,0 +1,1701 @@
+openapi: 3.0.0
+x-stoplight:
+  id: rvu7jxzewuf2v
+info:
+  title: API External MyValue
+  version: 1.0.0
+  description: |-
+    ## Introduction
+    Kami memahami kebutuhan anda untuk melakukan integrasi lebih dalam dengan produk kami. Kami hadir untuk mengaktifkan dan mendukung sistem anda agar terintegrasi dengan produk MyValue.
+
+    ## Pre-Requisites
+    Hal yang wajib diketahui untuk menggunakan API di dokumentasi ini
+    - Mengetahui cara kerja REST-API. Memahami cara membuat request dan menerima response API
+    - Memiliki client_id dan client_secret yang sudah diberikan oleh Tim MyValue
+    - Mengajukan redirect_url ke Tim MyValue ketika ada perubahan atau penambahan alamat url
+    - Proses integrasi menggunakan sistem Host-to-Host (Backend to Backend) atau direct integration.
+
+    ## Objective
+    Dengan menyelesaikan dokumentasi ini, anda dapat
+    - Membuat request dan menerima response API
+    - Memahami cara kerja API dan API mana yang dibutuhkan untuk produk anda. 
+    - Memahami komponen yang perlu dibangun di sistem/produk anda agar sesuai dengan API MyValue
+servers:
+  - url: 'https://external.ovaltech.id'
+    description: Staging
+paths:
+  /v2/service/user/:
+    get:
+      tags:
+        - default
+      summary: get user
+      parameters:
+        - name: by
+          in: query
+          schema:
+            type: string
+          example: valueid
+          description: 'Parameter pencarian, opsi: “valueid” / "membership_number" / “email” / “phone”'
+          required: true
+        - name: value
+          in: query
+          schema:
+            type: string
+          example: VR8EPN
+          description: Nilai pencarian
+          required: true
+        - name: clientID
+          in: query
+          schema:
+            type: string
+          example: GramediaPOS
+          description: ID client
+          required: true
+        - name: sign
+          in: query
+          schema:
+            type: string
+          example: '{{SIGN}}'
+          description: 'Pembuatan sign menggunakan kalkulasi: sha256(clientID + clientSecret + by + value)'
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  Example 1:
+                    id: 7c9def0b-a6f2-4438-9f29-6855e48271ab
+                    phone: '82818111212'
+                    phoneVerified: true
+                    enabled: true
+                    email: albert@citis.co.id
+                    emailVerified: true
+                    firstName: o l o l o l o l
+                    lastName: o l o l o l o l
+                    gender: M
+                    kgValueID: VR8EPN
+                    profession: Pelajar
+                    birthDate: null
+                    personalIdentityNo: '1231789'
+                    photo: 'https://staging-myvalue.ap-south-1.linodeobjects.com/avatar/7c9def0b-a6f2-4438-9f29-6855e48271ab.jpg?1681367629'
+                    address: Jalan jalan No.111
+                    setPassword: true
+                    stateProvince:
+                      id: 1
+                      title: Kab. Aceh Barat
+                    city:
+                      id: 1
+                      title: Nanggroe Aceh Darussalam (NAD)
+                    district:
+                      id: 1
+                      title: Arongan Lambalek
+                    zipCode:
+                      id: 0
+                      title: ''
+                      village: ''
+                    createdAt: '2021-12-30T03:23:35Z'
+                    point: 36578968
+                properties:
+                  id:
+                    type: string
+                  phone:
+                    type: string
+                  phoneVerified:
+                    type: boolean
+                  enabled:
+                    type: boolean
+                  email:
+                    type: string
+                  emailVerified:
+                    type: boolean
+                  firstName:
+                    type: string
+                  lastName:
+                    type: string
+                  gender:
+                    type: string
+                  kgValueID:
+                    type: string
+                  profession:
+                    type: string
+                  birthDate:
+                    type: string
+                    nullable: true
+                  personalIdentityNo:
+                    type: string
+                  photo:
+                    type: string
+                  address:
+                    type: string
+                  setPassword:
+                    type: boolean
+                  stateProvince:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      title:
+                        type: string
+                  city:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      title:
+                        type: string
+                  district:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      title:
+                        type: string
+                  zipCode:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      title:
+                        type: string
+                      village:
+                        type: string
+                  createdAt:
+                    type: string
+                  point:
+                    type: integer
+              examples:
+                Example 1:
+                  value:
+                    id: 7c9def0b-a6f2-4438-9f29-6855e48271ab
+                    phone: '81281837128'
+                    phoneVerified: true
+                    enabled: true
+                    email: albert@citis.co.id
+                    emailVerified: true
+                    firstName: o l o l o l o l
+                    lastName: o l o l o l o l
+                    gender: M
+                    kgValueID: VR8EPN
+                    profession: Pelajar
+                    birthDate: null
+                    personalIdentityNo: '1231789'
+                    photo: 'https://staging-myvalue.ap-south-1.linodeobjects.com/avatar/7c9def0b-a6f2-4438-9f29-6855e48271ab.jpg?1681367629'
+                    address: Jalan jalan No.111
+                    setPassword: true
+                    stateProvince:
+                      id: 1
+                      title: Kab. Aceh Barat
+                    city:
+                      id: 1
+                      title: Nanggroe Aceh Darussalam (NAD)
+                    district:
+                      id: 1
+                      title: Arongan Lambalek
+                    zipCode:
+                      id: 0
+                      title: ''
+                      village: ''
+                    createdAt: '2021-12-30T03:23:35Z'
+                    point: 36578968
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  detail:
+                    type: string
+                  errorCode:
+                    type: integer
+                x-examples:
+                  Example 1:
+                    id: InvalidClient
+                    detail: Client id or client secret is invalid
+                    errorCode: 400
+              examples:
+                Proses validasi gagal atau format request yang dimasukkan salah:
+                  value:
+                    id: InvalidClient
+                    detail: Client id or client secret is invalid
+                    errorCode: 400
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  detail:
+                    type: string
+                  errorCode:
+                    type: integer
+                x-examples:
+                  Example 1:
+                    id: ErrAuthorizationInvalidSign
+                    detail: Invalid Sign Parameter
+                    errorCode: 401
+              examples:
+                Gagal melakukan proses autentikasi data:
+                  value:
+                    id: ErrAuthorizationInvalidSign
+                    detail: Invalid Sign Parameter
+                    errorCode: 401
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  detail:
+                    type: string
+                  errorCode:
+                    type: integer
+                x-examples:
+                  Example 1:
+                    id: MUD001
+                    detail: User not found
+                    errorCode: 404
+              examples:
+                Data user MyValue tidak ditemukan:
+                  value:
+                    id: MUD001
+                    detail: User not found
+                    errorCode: 404
+      description: "API untuk mendapatkan data user MyValue dengan kondisi spesi\0k"
+  /service/point/earn/:
+    post:
+      tags:
+        - default
+      summary: point earning
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                Example 1:
+                  amount: 10000
+                  exchangeRate: 0
+                  outletID: MVAPP00001
+                  referenceNo: MVAPP-TEST-080989999
+                  valueID: VB60VS
+                  clientID: GramediaPOS
+                  sign: '{{SIGN}}'
+              properties:
+                amount:
+                  type: integer
+                  description: berisi jumlah nominal transaksi yang dilakukan
+                exchangeRate:
+                  type: integer
+                  description: |-
+                    konstanta yang digunakan saat perhitungan poin.
+                    Jika diisi 0 maka perhitungan konstanta ditentukan oleh sistem MyValue.
+                outletID:
+                  type: string
+                  description: berisi id outlet saat member melakukan transaksi
+                referenceNo:
+                  type: string
+                  description: nomor struk saat member melakukan transaksi
+                valueID:
+                  type: string
+                  description: Value id
+                clientID:
+                  type: string
+                  description: Id client
+                sign:
+                  type: string
+                  description: 'Pembuatan sign menggunakan kalkulasi: sha256(clientID + clientSecret + Amount + referenceNo + exchangeRate + outletID)'
+              required:
+                - amount
+                - outletID
+                - referenceNo
+                - valueID
+                - clientID
+                - sign
+            examples:
+              Example 1:
+                value:
+                  amount: 10000
+                  exchangeRate: 0
+                  outletID: MVAPP00001
+                  referenceNo: MVAPP-TEST-080989999
+                  valueID: VB60VS
+                  clientID: GramediaPOS
+                  sign: '{{SIGN}}'
+        description: ''
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              examples:
+                Example 1:
+                  value:
+                    Point: 160
+              schema:
+                type: object
+                x-examples:
+                  Example 1:
+                    Point: 160
+                properties:
+                  Point:
+                    type: integer
+                    description: Point yang diperoleh
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  detail:
+                    type: string
+                  errorCode:
+                    type: integer
+                x-examples:
+                  Example 1:
+                    id: InvalidClient
+                    detail: Client id or client secret is invalid
+                    errorCode: 400
+              examples:
+                Proses validasi gagal atau format request yang dimasukkan salah:
+                  value:
+                    id: InvalidClient
+                    detail: Client id or client secret is invalid
+                    errorCode: 400
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  detail:
+                    type: string
+                  errorCode:
+                    type: integer
+                x-examples:
+                  Example 1:
+                    id: ErrAuthorizationInvalidSign
+                    detail: Invalid Sign Parameter
+                    errorCode: 401
+              examples:
+                Gagal melakukan proses autentikasi data:
+                  value:
+                    id: ErrAuthorizationInvalidSign
+                    detail: Invalid Sign Parameter
+                    errorCode: 401
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  detail:
+                    type: string
+                  errorCode:
+                    type: integer
+                x-examples:
+                  Example 1:
+                    id: ErrSuboutletNotfound
+                    detail: Suboutlet not found
+                    errorCode: 404
+              examples:
+                Outlet ID tidak ditemukan:
+                  value:
+                    id: ErrSuboutletNotfound
+                    detail: Suboutlet not found
+                    errorCode: 404
+                ' Value ID tidak ditemukan':
+                  value:
+                    id: ErrMembershipNotFound
+                    detail: User membership not found
+                    errorCode: 404
+      description: 'Dengan menggunakan method ini, anda dapat melakukan mutasi point earning (menambahkan point) ke user MyValue.'
+  /service/point/earn/estimate:
+    post:
+      tags:
+        - default
+      summary: point earn estimate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                Example 1:
+                  amount: 10000
+                  outletID: MVAPP00001
+                  valueID: VR8EPN
+                  clientID: GramediaPOS
+                  sign: '{{SIGN}}'
+              properties:
+                amount:
+                  type: integer
+                  description: berisi jumlah nominal transaksi yang dilakukan
+                outletID:
+                  type: string
+                  description: berisi id outlet saat member melakukan transaksi
+                valueID:
+                  type: string
+                  description: Value id
+                clientID:
+                  type: string
+                  description: Id client
+                sign:
+                  type: string
+                  description: 'Pembuatan sign menggunakan kalkulasi: sha256(clientID + clientSecret + Amount + outletID + valueID)'
+              required:
+                - amount
+                - outletID
+                - valueID
+                - clientID
+                - sign
+            examples:
+              Example 1:
+                value:
+                  amount: 10000
+                  outletID: MVAPP00001
+                  valueID: VB60VS
+                  clientID: GramediaPOS
+                  sign: '{{SIGN}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              examples:
+                Example 1:
+                  value:
+                    point: 36579288
+                    estimatePoint: 160
+              schema:
+                type: object
+                x-examples:
+                  Example 1:
+                    point: 36579288
+                    estimatePoint: 160
+                properties:
+                  point:
+                    type: integer
+                    description: estimasi total point
+                  estimatePoint:
+                    type: integer
+                    description: estimasi point diperoleh
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  detail:
+                    type: string
+                  errorCode:
+                    type: integer
+                x-examples:
+                  Example 1:
+                    id: InvalidClient
+                    detail: Client id or client secret is invalid
+                    errorCode: 400
+              examples:
+                Proses validasi gagal atau format request yang dimasukkan salah:
+                  value:
+                    id: InvalidClient
+                    detail: Client id or client secret is invalid
+                    errorCode: 400
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  detail:
+                    type: string
+                  errorCode:
+                    type: integer
+                x-examples:
+                  Example 1:
+                    id: ErrAuthorizationInvalidSign
+                    detail: Invalid Sign Parameter
+                    errorCode: 401
+              examples:
+                Gagal melakukan proses autentikasi data:
+                  value:
+                    id: ErrAuthorizationInvalidSign
+                    detail: Invalid Sign Parameter
+                    errorCode: 401
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  detail:
+                    type: string
+                  errorCode:
+                    type: integer
+                x-examples:
+                  Example 1:
+                    id: ErrSuboutletNotfound
+                    detail: Suboutlet not found
+                    errorCode: 404
+              examples:
+                Outlet ID tidak ditemukan:
+                  value:
+                    id: ErrSuboutletNotfound
+                    detail: Suboutlet not found
+                    errorCode: 404
+      description: 'Dengan menggunakan method ini, anda dapat melakukan estimasi mutasi point earning.'
+  /service/point/history/:
+    get:
+      tags:
+        - default
+      summary: point history
+      parameters:
+        - name: sign
+          in: query
+          schema:
+            type: string
+          example: '{{SIGN}}'
+          description: 'Pembuatan sign menggunakan kalkulasi: sha256(clientID + clientSecret + brandID + businessUnit + from + to + limit + page + mutation + valueID)'
+          required: true
+        - name: clientID
+          in: query
+          schema:
+            type: string
+          example: GramediaPOS
+          description: Id client
+          required: true
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: 10
+          description: Limit per halaman
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: 1
+          description: Halaman
+        - name: valueID
+          in: query
+          schema:
+            type: string
+          example: VB60VS
+          description: Value id
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: from
+          description: "Dari , date \0lter format : YYYY-MM-DD"
+        - schema:
+            type: string
+          in: query
+          name: to
+          description: "Sampai , date \0lter format : YYYY-MM-DD"
+        - schema:
+            type: string
+          in: query
+          name: mutation
+          description: 'Jenis mutasi , EARNING/REDEEM'
+        - schema:
+            type: integer
+          in: query
+          name: brandID
+          description: Id brand
+        - schema:
+            type: integer
+          in: query
+          name: businessUnit
+          description: Id bisnis unit
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              examples:
+                Example 1:
+                  value:
+                    count: 38
+                    next: 'http://external.ovaltech.id/service/point/history/?clientID=GramediaPOS&limit=10&page=2&sign=47b05b7078d1c0cf92f33240b335a0ecbd0c6ee175b83cddd0202d3d0b593bf1&valueID=VB60VS'
+                    previous: null
+                    perPage: 10
+                    results:
+                      - pointMutationSNO: 2971745
+                        createdDate: '2022-12-06T03:20:50Z'
+                        expiredDate: '2024-12-31T17:00:00Z'
+                        outletName: MyValue Apps
+                        subOutletName: MyValue Apps
+                        mutationTypeName: EARNING
+                        referenceNo: MVAPP-TEST-0809189999
+                        point: 160
+                        memberNo: VB60VS
+                        memberName: ''
+                        valueID: VB60VS
+                        status: null
+                        isExpired: false
+                      - pointMutationSNO: 2970561
+                        createdDate: '2022-10-26T06:06:17Z'
+                        expiredDate: '2024-10-31T17:00:00Z'
+                        outletName: MyValue Apps
+                        subOutletName: MyValue Apps
+                        mutationTypeName: EARNING
+                        referenceNo: MVAPP-TEST-121212121
+                        point: 160
+                        memberNo: VB60VS
+                        memberName: ''
+                        valueID: VB60VS
+                        status: null
+                        isExpired: false
+                      - pointMutationSNO: 2970491
+                        createdDate: '2022-10-04T12:10:48Z'
+                        expiredDate: '2024-10-31T17:00:00Z'
+                        outletName: MyValue Apps
+                        subOutletName: MyValue Apps
+                        mutationTypeName: EARNING
+                        referenceNo: MVAPP-TEST-080989991
+                        point: 160
+                        memberNo: VB60VS
+                        memberName: ''
+                        valueID: VB60VS
+                        status: null
+                        isExpired: false
+                      - pointMutationSNO: 2970489
+                        createdDate: '2022-10-04T07:50:44Z'
+                        expiredDate: '2024-10-31T17:00:00Z'
+                        outletName: MyValue Apps
+                        subOutletName: MyValue Apps
+                        mutationTypeName: EARNING
+                        referenceNo: MVAPP-TEST-080989999
+                        point: 160
+                        memberNo: VB60VS
+                        memberName: ''
+                        valueID: VB60VS
+                        status: null
+                        isExpired: false
+                      - pointMutationSNO: 2921793
+                        createdDate: '2021-04-22T04:12:53.933093Z'
+                        expiredDate: ''
+                        outletName: MyValue Apps
+                        subOutletName: MyValue Apps
+                        mutationTypeName: REDEEM
+                        referenceNo: INV-20210422-VOUCHER-9820
+                        point: 0
+                        memberNo: VB60VS
+                        memberName: ''
+                        valueID: VB60VS
+                        status: null
+                        isExpired: false
+                      - pointMutationSNO: 2921792
+                        createdDate: '2021-04-22T04:11:40.88882Z'
+                        expiredDate: ''
+                        outletName: MyValue Apps
+                        subOutletName: MyValue Apps
+                        mutationTypeName: REDEEM
+                        referenceNo: INV-20210422-VOUCHER-9819
+                        point: 0
+                        memberNo: VB60VS
+                        memberName: ''
+                        valueID: VB60VS
+                        status: null
+                        isExpired: false
+                      - pointMutationSNO: 2921790
+                        createdDate: '2021-04-22T04:07:00.140608Z'
+                        expiredDate: ''
+                        outletName: MyValue Apps
+                        subOutletName: MyValue Apps
+                        mutationTypeName: REDEEM
+                        referenceNo: INV-20210422-VOUCHER-9817
+                        point: 0
+                        memberNo: VB60VS
+                        memberName: ''
+                        valueID: VB60VS
+                        status: null
+                        isExpired: false
+                      - pointMutationSNO: 2921789
+                        createdDate: '2021-04-22T04:02:50.996433Z'
+                        expiredDate: ''
+                        outletName: MyValue Apps
+                        subOutletName: MyValue Apps
+                        mutationTypeName: REDEEM
+                        referenceNo: INV-20210422-VOUCHER-9816
+                        point: 0
+                        memberNo: VB60VS
+                        memberName: ''
+                        valueID: VB60VS
+                        status: null
+                        isExpired: false
+                      - pointMutationSNO: 2921788
+                        createdDate: '2021-04-22T04:01:17.086657Z'
+                        expiredDate: ''
+                        outletName: MyValue Apps
+                        subOutletName: MyValue Apps
+                        mutationTypeName: REDEEM
+                        referenceNo: INV-20210422-VOUCHER-9815
+                        point: 0
+                        memberNo: VB60VS
+                        memberName: ''
+                        valueID: VB60VS
+                        status: null
+                        isExpired: false
+                      - pointMutationSNO: 2921787
+                        createdDate: '2021-04-22T04:00:45.227019Z'
+                        expiredDate: ''
+                        outletName: MyValue Apps
+                        subOutletName: MyValue Apps
+                        mutationTypeName: REDEEM
+                        referenceNo: INV-20210422-VOUCHER-9814
+                        point: 0
+                        memberNo: VB60VS
+                        memberName: ''
+                        valueID: VB60VS
+                        status: null
+                        isExpired: false
+              schema:
+                type: object
+                x-examples:
+                  Example 1:
+                    count: 38
+                    next: 'http://external.ovaltech.id/service/point/history/?clientID=GramediaPOS&limit=10&page=2&sign=47b05b7078d1c0cf92f33240b335a0ecbd0c6ee175b83cddd0202d3d0b593bf1&valueID=VB60VS'
+                    previous: null
+                    perPage: 10
+                    results:
+                      - pointMutationSNO: 2971745
+                        createdDate: '2022-12-06T03:20:50Z'
+                        expiredDate: '2024-12-31T17:00:00Z'
+                        outletName: MyValue Apps
+                        subOutletName: MyValue Apps
+                        mutationTypeName: EARNING
+                        referenceNo: MVAPP-TEST-0809189999
+                        point: 160
+                        memberNo: VB60VS
+                        memberName: ''
+                        valueID: VB60VS
+                        status: null
+                        isExpired: false
+                      - pointMutationSNO: 2970561
+                        createdDate: '2022-10-26T06:06:17Z'
+                        expiredDate: '2024-10-31T17:00:00Z'
+                        outletName: MyValue Apps
+                        subOutletName: MyValue Apps
+                        mutationTypeName: EARNING
+                        referenceNo: MVAPP-TEST-121212121
+                        point: 160
+                        memberNo: VB60VS
+                        memberName: ''
+                        valueID: VB60VS
+                        status: null
+                        isExpired: false
+                      - pointMutationSNO: 2970491
+                        createdDate: '2022-10-04T12:10:48Z'
+                        expiredDate: '2024-10-31T17:00:00Z'
+                        outletName: MyValue Apps
+                        subOutletName: MyValue Apps
+                        mutationTypeName: EARNING
+                        referenceNo: MVAPP-TEST-080989991
+                        point: 160
+                        memberNo: VB60VS
+                        memberName: ''
+                        valueID: VB60VS
+                        status: null
+                        isExpired: false
+                      - pointMutationSNO: 2970489
+                        createdDate: '2022-10-04T07:50:44Z'
+                        expiredDate: '2024-10-31T17:00:00Z'
+                        outletName: MyValue Apps
+                        subOutletName: MyValue Apps
+                        mutationTypeName: EARNING
+                        referenceNo: MVAPP-TEST-080989999
+                        point: 160
+                        memberNo: VB60VS
+                        memberName: ''
+                        valueID: VB60VS
+                        status: null
+                        isExpired: false
+                      - pointMutationSNO: 2921793
+                        createdDate: '2021-04-22T04:12:53.933093Z'
+                        expiredDate: ''
+                        outletName: MyValue Apps
+                        subOutletName: MyValue Apps
+                        mutationTypeName: REDEEM
+                        referenceNo: INV-20210422-VOUCHER-9820
+                        point: 0
+                        memberNo: VB60VS
+                        memberName: ''
+                        valueID: VB60VS
+                        status: null
+                        isExpired: false
+                      - pointMutationSNO: 2921792
+                        createdDate: '2021-04-22T04:11:40.88882Z'
+                        expiredDate: ''
+                        outletName: MyValue Apps
+                        subOutletName: MyValue Apps
+                        mutationTypeName: REDEEM
+                        referenceNo: INV-20210422-VOUCHER-9819
+                        point: 0
+                        memberNo: VB60VS
+                        memberName: ''
+                        valueID: VB60VS
+                        status: null
+                        isExpired: false
+                      - pointMutationSNO: 2921790
+                        createdDate: '2021-04-22T04:07:00.140608Z'
+                        expiredDate: ''
+                        outletName: MyValue Apps
+                        subOutletName: MyValue Apps
+                        mutationTypeName: REDEEM
+                        referenceNo: INV-20210422-VOUCHER-9817
+                        point: 0
+                        memberNo: VB60VS
+                        memberName: ''
+                        valueID: VB60VS
+                        status: null
+                        isExpired: false
+                      - pointMutationSNO: 2921789
+                        createdDate: '2021-04-22T04:02:50.996433Z'
+                        expiredDate: ''
+                        outletName: MyValue Apps
+                        subOutletName: MyValue Apps
+                        mutationTypeName: REDEEM
+                        referenceNo: INV-20210422-VOUCHER-9816
+                        point: 0
+                        memberNo: VB60VS
+                        memberName: ''
+                        valueID: VB60VS
+                        status: null
+                        isExpired: false
+                      - pointMutationSNO: 2921788
+                        createdDate: '2021-04-22T04:01:17.086657Z'
+                        expiredDate: ''
+                        outletName: MyValue Apps
+                        subOutletName: MyValue Apps
+                        mutationTypeName: REDEEM
+                        referenceNo: INV-20210422-VOUCHER-9815
+                        point: 0
+                        memberNo: VB60VS
+                        memberName: ''
+                        valueID: VB60VS
+                        status: null
+                        isExpired: false
+                      - pointMutationSNO: 2921787
+                        createdDate: '2021-04-22T04:00:45.227019Z'
+                        expiredDate: ''
+                        outletName: MyValue Apps
+                        subOutletName: MyValue Apps
+                        mutationTypeName: REDEEM
+                        referenceNo: INV-20210422-VOUCHER-9814
+                        point: 0
+                        memberNo: VB60VS
+                        memberName: ''
+                        valueID: VB60VS
+                        status: null
+                        isExpired: false
+                properties:
+                  count:
+                    type: integer
+                    description: Jumlah data
+                  next:
+                    type: string
+                    description: Data sebelum
+                    nullable: true
+                  previous:
+                    type: string
+                    description: Data sesudah
+                    nullable: true
+                  perPage:
+                    type: integer
+                    description: Data setiap page
+                  results:
+                    type: array
+                    description: Point History Response
+                    items:
+                      type: object
+                      properties:
+                        pointMutationSNO:
+                          type: integer
+                          description: Id transaksi point
+                        createdDate:
+                          type: string
+                          description: Tanggal dibuat
+                        expiredDate:
+                          type: string
+                          description: Tanggal expired
+                        outletName:
+                          type: string
+                          description: Nama outlet
+                        subOutletName:
+                          type: string
+                          description: Nama suboutlet
+                        mutationTypeName:
+                          type: string
+                          description: Jenis mutasi
+                        referenceNo:
+                          type: string
+                          description: Nomer referensi
+                        point:
+                          type: integer
+                          description: Point
+                        memberNo:
+                          type: string
+                          description: Nomer member
+                        memberName:
+                          type: string
+                          description: Nama member
+                        valueID:
+                          type: string
+                          description: Value id
+                        status:
+                          type: object
+                          description: Status
+                          nullable: true
+                        isExpired:
+                          type: boolean
+                          description: Status expired
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  detail:
+                    type: string
+                  errorCode:
+                    type: integer
+                x-examples:
+                  Example 1:
+                    id: InvalidClient
+                    detail: Client id or client secret is invalid
+                    errorCode: 400
+              examples:
+                Proses validasi gagal atau format request yang dimasukkan salah:
+                  value:
+                    id: InvalidClient
+                    detail: Client id or client secret is invalid
+                    errorCode: 400
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  detail:
+                    type: string
+                  errorCode:
+                    type: integer
+                x-examples:
+                  Example 1:
+                    id: ErrAuthorizationInvalidSign
+                    detail: Invalid Sign Parameter
+                    errorCode: 401
+              examples:
+                Gagal melakukan proses autentikasi data:
+                  value:
+                    id: ErrAuthorizationInvalidSign
+                    detail: Invalid Sign Parameter
+                    errorCode: 401
+  /service/point/redeem/:
+    post:
+      tags:
+        - default
+      summary: point redeem
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                Example 1:
+                  amount: 2
+                  outletID: MVAPP00001
+                  referenceNo: MVAPP-TEST-121A123987464646
+                  valueID: VR8EPN
+                  clientID: GramediaPOS
+                  sign: '{{SIGN}}'
+              properties:
+                amount:
+                  type: integer
+                  description: berisi jumlah nominal transaksi yang dilakukan
+                outletID:
+                  type: string
+                  description: berisi id outlet saat member melakukan transaksi
+                referenceNo:
+                  type: string
+                  description: nomor struk saat member melakukan transaksi
+                valueID:
+                  type: string
+                  description: Value id
+                clientID:
+                  type: string
+                  description: Id client
+                sign:
+                  type: string
+                  description: 'Pembuatan sign menggunakan kalkulasi: sha256(clientID + clientSecret + Amount + referenceNo + outletID)'
+              required:
+                - amount
+                - outletID
+                - referenceNo
+                - valueID
+                - clientID
+                - sign
+            examples:
+              Example 1:
+                value:
+                  amount: 2
+                  outletID: MVAPP00001
+                  referenceNo: MVAPP-TEST-121A123987464646
+                  valueID: VR8EPN
+                  clientID: GramediaPOS
+                  sign: '{{SIGN}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              examples:
+                Example 1:
+                  value:
+                    Point: -2
+              schema:
+                type: object
+                x-examples:
+                  Example 1:
+                    Point: -2
+                properties:
+                  Point:
+                    type: integer
+                    description: Point yang dikurangkan
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  detail:
+                    type: string
+                  errorCode:
+                    type: integer
+                x-examples:
+                  Example 1:
+                    id: InvalidClient
+                    detail: Client id or client secret is invalid
+                    errorCode: 400
+              examples:
+                Proses validasi gagal atau format request yang dimasukkan salah:
+                  value:
+                    id: InvalidClient
+                    detail: Client id or client secret is invalid
+                    errorCode: 400
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  detail:
+                    type: string
+                  errorCode:
+                    type: integer
+                x-examples:
+                  Example 1:
+                    id: ErrAuthorizationInvalidSign
+                    detail: Invalid Sign Parameter
+                    errorCode: 401
+              examples:
+                Gagal melakukan proses autentikasi data:
+                  value:
+                    id: ErrAuthorizationInvalidSign
+                    detail: Invalid Sign Parameter
+                    errorCode: 401
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  detail:
+                    type: string
+                  errorCode:
+                    type: integer
+                x-examples:
+                  Example 1:
+                    id: ErrSuboutletNotfound
+                    detail: Suboutlet not found
+                    errorCode: 404
+              examples:
+                Outlet ID tidak ditemukan:
+                  value:
+                    id: ErrSuboutletNotfound
+                    detail: Suboutlet not found
+                    errorCode: 404
+                Value ID tidak ditemukan:
+                  value:
+                    id: ErrMembershipNotFound
+                    detail: User membership not found
+                    errorCode: 404
+      description: 'Dengan menggunakan method ini, anda dapat melakukan mutasi redeem point (mengurangkan point) user MyValue.'
+  /service/point/adjustment/:
+    post:
+      tags:
+        - default
+      summary: point cancel redeem
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                Example 1:
+                  amount: 10000
+                  exchangeRate: 0
+                  outletID: MVAPP00001
+                  referenceNo: MVAPP-cancel-redeem-16526172615
+                  valueID: VR8EPN
+                  adjustedReferenceNo: MVAPP-TEST-1abc1234
+                  adjustmentType: CANCEL_REDEEM
+                  clientID: GramediaPOS
+                  sign: '{{SIGN}}'
+              properties:
+                amount:
+                  type: integer
+                  description: berisi jumlah nominal transaksi yang dilakukan
+                exchangeRate:
+                  type: integer
+                  description: |-
+                    konstanta yang digunakan saat perhitungan poin.
+                    Jika diisi 0 maka perhitungan konstanta ditentukan oleh sistem MyValue.
+                outletID:
+                  type: string
+                  description: berisi id outlet saat member melakukan transaksi
+                referenceNo:
+                  type: string
+                  description: nomor unik proses adjustment
+                valueID:
+                  type: string
+                  description: Value id
+                adjustedReferenceNo:
+                  type: string
+                  description: nomor struk saat member melakukan transaksi
+                adjustmentType:
+                  type: string
+                  description: 'Tipe Adjustment: RETURN_EARN atau CANCEL_REDEEM'
+                clientID:
+                  type: string
+                  description: Id client
+                sign:
+                  type: string
+                  description: 'Pembuatan sign menggunakan kalkulasi: sha256(clientID + clientSecret + amount + referenceNo + exchangeRate + outletID + adjustedReferenceNo + adjustmentType)'
+              required:
+                - amount
+                - outletID
+                - referenceNo
+                - valueID
+                - adjustedReferenceNo
+                - adjustmentType
+                - clientID
+                - sign
+            examples:
+              Point cancel redeem:
+                value:
+                  amount: 10000
+                  exchangeRate: 0
+                  outletID: MVAPP00001
+                  referenceNo: MVAPP-cancel-redeem-16526172615
+                  valueID: VR8EPN
+                  adjustedReferenceNo: MVAPP-TEST-1abc1234
+                  adjustmentType: CANCEL_REDEEM
+                  clientID: GramediaPOS
+                  sign: '{{SIGN}}'
+              Point return earn:
+                value:
+                  amount: 100
+                  exchangeRate: 0
+                  outletID: MVAPP00001
+                  referenceNo: MVAPP-refund-aoopx2p121
+                  valueID: VR8EPN
+                  adjustedReferenceNo: MVAPP-TEST-12121sa2s121
+                  adjustmentType: RETURN_EARN
+                  clientID: GramediaPOS
+                  sign: '{{SIGN}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  Example 1:
+                    Point: 104
+                properties:
+                  Point:
+                    type: integer
+                    description: Total point yang di adj
+              examples:
+                Example 1:
+                  value:
+                    Point: 104
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                Adjustment reference code salah:
+                  value:
+                    id: ErrInvalidAdjustedRefCode
+                    detail: Invalid adjusted reference no
+                    errorCode: 400
+                Proses validasi gagal atau format request yang dimasukkan salah:
+                  value:
+                    id: InvalidClient
+                    detail: Client id or client secret is invalid
+                    errorCode: 400
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  detail:
+                    type: string
+                  errorCode:
+                    type: integer
+                x-examples:
+                  Example 1:
+                    id: ErrAuthorizationInvalidSign
+                    detail: Invalid Sign Parameter
+                    errorCode: 401
+              examples:
+                Gagal melakukan proses autentikasi data:
+                  value:
+                    id: ErrAuthorizationInvalidSign
+                    detail: Invalid Sign Parameter
+                    errorCode: 401
+      description: |-
+        Dengan menggunakan method ini, anda dapat melakukan mutasi cancel redeem point dan return earn user MyValue.
+
+        Cancel redeem akan mengembalikan point user yang digunakan pada proses redeem tertentu. Sedangkan return earn akan mengurangkan point yang didapatkan dari transaksi tertentu.
+  /service/point/:
+    get:
+      tags:
+        - default
+      summary: get current user point
+      parameters:
+        - name: valueID
+          in: query
+          schema:
+            type: string
+          example: VR8EPN
+          description: Value id
+          required: true
+        - name: clientID
+          in: query
+          schema:
+            type: string
+          example: GramediaPOS
+          description: Id client
+          required: true
+        - name: sign
+          in: query
+          schema:
+            type: string
+          example: '{{SIGN}}'
+          description: 'Pembuatan sign menggunakan kalkulasi: sha256(clientID + clientSecret + valueID)'
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  Example 1:
+                    point: 36579123
+                properties:
+                  point:
+                    type: integer
+                    description: Point saat ini
+              examples:
+                Example 1:
+                  value:
+                    point: 36579123
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  detail:
+                    type: string
+                  errorCode:
+                    type: integer
+                x-examples:
+                  Example 1:
+                    id: InvalidClient
+                    detail: Client id or client secret is invalid
+                    errorCode: 400
+              examples:
+                Proses validasi gagal atau format request yang dimasukkan salah:
+                  value:
+                    id: InvalidClient
+                    detail: Client id or client secret is invalid
+                    errorCode: 400
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  detail:
+                    type: string
+                  errorCode:
+                    type: integer
+                x-examples:
+                  Example 1:
+                    id: ErrAuthorizationInvalidSign
+                    detail: Invalid Sign Parameter
+                    errorCode: 401
+              examples:
+                Gagal melakukan proses autentikasi data:
+                  value:
+                    id: ErrAuthorizationInvalidSign
+                    detail: Invalid Sign Parameter
+                    errorCode: 401
+      description: 'Dengan menggunakan method ini, anda dapat melihat total point yang dimiliki oleh user MyValue.'
+  /service/user/:
+    post:
+      tags:
+        - default
+      summary: create user with referral suboutlet
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                Example 1:
+                  email: albertusag_e_ng12312@gmail.com
+                  fullName: string
+                  passwordLess: true
+                  clientID: GramediaPOS
+                  referencedBy: suboutlet
+                  referencedCode: '10100'
+                  sign: '{{SIGN}}'
+              properties:
+                email:
+                  type: string
+                  description: 'Email (required, jika nomor telepon tidak diisi)'
+                mobilePhoneNumber:
+                  type: string
+                  description: |
+                    Nomor telepon (required, jika email tidak diisi)
+                passwordLess:
+                  type: boolean
+                  description: Tidak ingin menggunakan password?
+                password:
+                  type: string
+                  description: Password
+                clientID:
+                  type: string
+                  description: Client ID
+                referencedBy:
+                  type: string
+                  description: 'Tipe referral, diisi suboutlet'
+                referencedCode:
+                  type: string
+                  description: Kode referensi suboutlet
+                fullName:
+                  type: string
+                  description: Nama
+                sign:
+                  type: string
+                  description: 'Pembuatan sign menggunakan kalkulasi: sha256(clientID + clientSecret + email + mobilePhoneNumber + fullName + membershipName + membershipNumber)'
+                membershipName:
+                  type: string
+                  description: Nama membership
+                membershipNumber:
+                  type: string
+                  description: Nomor membership
+              required:
+                - clientID
+                - fullName
+                - sign
+            examples:
+              Create user MyValue with referral suboutlet:
+                value:
+                  email: albertusag_e_ng12312@gmail.com
+                  fullName: string
+                  passwordLess: true
+                  clientID: GramediaPOS
+                  referencedBy: suboutlet
+                  referencedCode: '10100'
+                  sign: '{{SIGN}}'
+              Create user MyValue:
+                value:
+                  email: albertusag_e_ng1212211@gmail.com
+                  fullName: string
+                  passwordLess: true
+                  clientID: GramediaPOS
+                  sign: '{{SIGN}}'
+        description: "Catatan:\n- Jika tidak ingin menggunakan atau memasukkan password pada saat proses registrasi, maka set \0field passwordLess = true .\n- Jika fi\0eld passwordLess diset sama dengan true , maka sistem akansecara otomatis mengiriman email atau sms berisi link untuk melakukan set password."
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  Example 1:
+                    id: 9b091a10-0abe-4eaa-87ea-e1b58a5fb51a
+                    valueID: VLWA4H
+                    email: albertusag_ea_ng1212211@gmail.com
+                    emailVerified: false
+                    mobilePhoneVerified: false
+                    active: true
+                    setPassword: false
+                    firstName: string
+                    userMembership:
+                      - id: 2235428
+                        memberNo: VLWA4H
+                        cardNumber: VLWA4H
+                        outletCode: MVAPP00001
+                        active: true
+                        email: albertusag_ea_ng1212211@gmail.com
+                        membershipName: MyValue
+                        valueID: VLWA4H
+                        firstName: string
+                        membershipID: 3
+                    registerProvider: backend_service
+                    clientID: GramediaPOS
+                    isAdmin: false
+                    isStaff: false
+                    createdAt: '2023-04-13T08:17:00Z'
+                properties:
+                  id:
+                    type: string
+                    description: User ID
+                  valueID:
+                    type: string
+                    description: Value ID
+                  email:
+                    type: string
+                    description: Email
+                  emailVerified:
+                    type: boolean
+                    description: "Status veri\0kasi email"
+                  mobilePhone:
+                    type: string
+                    description: Nomor telepon
+                  mobilePhoneVerified:
+                    type: boolean
+                    description: "Status veri\0kasi nomor telepon"
+                  active:
+                    type: boolean
+                    description: Status user
+                  setPassword:
+                    type: boolean
+                    description: 'Status password, diset atau tidak'
+                  firstName:
+                    type: string
+                    description: Nama depan
+                  userMembership:
+                    type: array
+                    description: Data membership
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          description: ID
+                        memberNo:
+                          type: string
+                          description: Nomor member
+                        cardNumber:
+                          type: string
+                          description: Nomor kartu
+                        outletCode:
+                          type: string
+                          description: Kode outlet
+                        active:
+                          type: boolean
+                          description: Status membership
+                        email:
+                          type: string
+                          description: Email
+                        mobilePhone:
+                          type: string
+                          description: Nomor telepon
+                        membershipName:
+                          type: string
+                          description: Nama membership
+                        valueID:
+                          type: string
+                          description: Value ID
+                        firstName:
+                          type: string
+                          description: Nama depan
+                        membershipID:
+                          type: integer
+                          description: ID membership
+                  registerProvider:
+                    type: string
+                    description: Sumber pendaftaran
+                  clientID:
+                    type: string
+                    description: Client ID
+                  isAdmin:
+                    type: boolean
+                    description: Status admin user
+                  isStaff:
+                    type: boolean
+                    description: Status staff user
+                  createdAt:
+                    type: string
+                    description: 'Tanggal '
+              examples:
+                Example 1:
+                  value:
+                    id: string
+                    valueID: string
+                    email: string
+                    emailVerified: true
+                    mobilePhoneVerified: true
+                    active: true
+                    setPassword: true
+                    firstName: string
+                    userMembership:
+                      - id: 0
+                        memberNo: string
+                        cardNumber: string
+                        outletCode: string
+                        active: true
+                        email: string
+                        membershipName: string
+                        valueID: string
+                        firstName: string
+                        membershipID: 0
+                    registerProvider: string
+                    clientID: string
+                    isAdmin: true
+                    isStaff: true
+                    createdAt: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  detail:
+                    type: string
+                  errorCode:
+                    type: integer
+                x-examples:
+                  Example 1:
+                    id: InvalidClient
+                    detail: Client id or client secret is invalid
+                    errorCode: 400
+              examples:
+                Proses validasi gagal atau format request yang dimasukkan salah:
+                  value:
+                    id: InvalidClient
+                    detail: Client id or client secret is invalid
+                    errorCode: 400
+                User telah terdaftar di MyValue:
+                  value:
+                    id: string
+                    detail: string
+                    errorCode: 0
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  detail:
+                    type: string
+                  errorCode:
+                    type: integer
+                x-examples:
+                  Example 1:
+                    id: ErrAuthorizationInvalidSign
+                    detail: Invalid Sign Parameter
+                    errorCode: 401
+              examples:
+                Gagal melakukan proses autentikasi data:
+                  value:
+                    id: ErrAuthorizationInvalidSign
+                    detail: Invalid Sign Parameter
+                    errorCode: 401
+components:
+  schemas: {}
+  examples: {}
+  responses: {}

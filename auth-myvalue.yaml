@@ -1,0 +1,455 @@
+openapi: 3.0.0
+x-stoplight:
+  id: 54c01a4b1f7a7
+info:
+  title: API Auth MyValue
+  version: 1.0.0
+  description: Dokumentasi API ini digunakan untuk mendapatkan access token dan user data dari MyValue API di backend BU.
+servers:
+  - url: 'https://auth.ovaltech.id'
+    description: staging
+paths:
+  /auth/token/:
+    post:
+      tags:
+        - default
+      summary: Token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                Example 1:
+                  grant_type: authorization_code
+                  client_secret: YOUR_CLIENT_SECRET
+                  code: YOUR_AUTHORIZATION_CODE
+                  client_id: YOUR_CLIENT_ID
+                  redirect_uri: YOUR_REDIRECT_URI
+              properties:
+                grant_type:
+                  type: string
+                  description: Nilainya harus `authorization_code`
+                client_secret:
+                  type: string
+                  description: Client secret BU
+                code:
+                  type: string
+                  description: Authorization code yang didapatkan di redirect uri BU
+                client_id:
+                  type: string
+                  description: Client id BU
+                redirect_uri:
+                  type: string
+                  description: Redirect uri yang telah didaftarkan
+              required:
+                - grant_type
+                - client_secret
+                - code
+                - client_id
+                - redirect_uri
+            examples:
+              Example 1:
+                value:
+                  grant_type: authorization_code
+                  client_secret: YOUR_CLIENT_SECRET
+                  code: YOUR_AUTHORIZATION_CODE
+                  client_id: YOUR_CLIENT_ID
+                  redirect_uri: YOUR_REDIRECT_URI
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  Example 1:
+                    access_token: 19wXbzPq15KCuTcIa19W7iRs4U7aygHs3YEfFVIrF9w.p37atXkavfxqyrI1DwX7o-36Yt9paO5RcQAhguLwQgY
+                    refresh_token: 36yqcYad6Qy9CaFaM6M_QR7oppY3ZQyBQ2FiCNqyFOA.XgwJ785C2t5G6Q0lBzyGoJKY0VgT9QRCHgEbnqrKQR4
+                    token_type: bearer
+                    expires_in: 86399
+                    refresh_expires_in: 31622400
+                    id_token: ''
+                    not_before_policy: 0
+                    session_state: ''
+                properties:
+                  access_token:
+                    type: string
+                    description: Token akses user
+                  refresh_token:
+                    type: string
+                  token_type:
+                    type: string
+                  expires_in:
+                    type: integer
+                  refresh_expires_in:
+                    type: integer
+                  id_token:
+                    type: string
+                  not_before_policy:
+                    type: integer
+                  session_state:
+                    type: string
+                required:
+                  - access_token
+              examples:
+                Example 1:
+                  value:
+                    access_token: 19wXbzPq15KCuTcIa19W7iRs4U7aygHs3YEfFVIrF9w.p37atXkavfxqyrI1DwX7o-36Yt9paO5RcQAhguLwQgY
+                    refresh_token: 36yqcYad6Qy9CaFaM6M_QR7oppY3ZQyBQ2FiCNqyFOA.XgwJ785C2t5G6Q0lBzyGoJKY0VgT9QRCHgEbnqrKQR4
+                    token_type: bearer
+                    expires_in: 86399
+                    refresh_expires_in: 31622400
+                    id_token: ''
+                    not_before_policy: 0
+                    session_state: ''
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  detail:
+                    type: string
+                  errorCode:
+                    type: integer
+                x-examples:
+                  Example 1:
+                    id: InvalidClient
+                    detail: Client salah
+                    errorCode: 400
+              examples:
+                Credential client salah:
+                  value:
+                    id: InvalidClient
+                    detail: Client salah
+                    errorCode: 400
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  detail:
+                    type: string
+                  errorCode:
+                    type: integer
+                x-examples:
+                  Example 1:
+                    id: SAT001
+                    detail: Credential yang Anda masukkan salah
+                    errorCode: 401
+              examples:
+                Authorization code salah atau sudah pernah dipakai:
+                  value:
+                    id: SAT001
+                    detail: Credential yang Anda masukkan salah
+                    errorCode: 401
+      description: 'Gunakan Authorization Code (code), BU perlu memanggil POST request ke endpoint token ini untuk mendapatkan access token.'
+  /auth/introspect/:
+    post:
+      tags:
+        - default
+      summary: Introspect
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                Example 1:
+                  access_token: gWhzJHy3ANwcqdPnQnkFHlYC9DrUY5wDvZnOhlD0SW0.ddwXSY3lbpwpuUPyOM26N3RLAow33ao4TBU9t8k6psg
+              properties:
+                access_token:
+                  type: string
+                  description: Akses token yang diperoleh dari endpoint token
+              required:
+                - access_token
+            examples:
+              Example 1:
+                value:
+                  access_token: gWhzJHy3ANwcqdPnQnkFHlYC9DrUY5wDvZnOhlD0SW0.ddwXSY3lbpwpuUPyOM26N3RLAow33ao4TBU9t8k6psg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              examples:
+                Example 1:
+                  value:
+                    id: 7c9def0b-a6f2-4438-9f29-6855e48271ab
+                    valueID: VR8EPN
+                    email: albert@citis.co.id
+                    emailVerified: true
+                    mobilePhone: '6222222222222'
+                    mobilePhoneVerified: true
+                    active: true
+                    setPassword: true
+                    firstName: o l o l o l o l
+                    lastName: o l o l o l o l
+                    gender: M
+                    personalIdentityNo: '1231789'
+                    profession: Pelajar
+                    photo: 'https://staging-myvalue.ap-south-1.linodeobjects.com/avatar/7c9def0b-a6f2-4438-9f29-6855e48271ab.jpg'
+                    address: Jalan jalan No.111
+                    city:
+                      id: 1
+                      title: Nanggroe Aceh Darussalam (NAD)
+                    stateProvince:
+                      id: 1
+                      title: Kab. Aceh Barat
+                    district:
+                      id: 1
+                      title: Arongan Lambalek
+                    userMembership:
+                      - id: 2233422
+                        memberNo: VR8EPN
+                        cardNumber: VR8EPN
+                        outletCode: MVAPP00001
+                        active: true
+                        email: albert@citis.co.id
+                        mobilePhone: '622'
+                        membershipName: MyValue
+                      - id: 2233962
+                        memberNo: d56c918f1b945224f4a83c447da2d6af
+                        cardNumber: d56c918f1b945224f4a83c447da2d6af
+                        active: true
+                        email: initestmapping3.myvalue@mailnesia.com
+                        mobilePhone: '0812121212111'
+                        membershipName: MyValue Third Party
+                      - id: 2194799
+                        memberNo: SIP2194799
+                        cardNumber: SIP2194799
+                        outletCode: '10106'
+                        active: true
+                        email: albert@citis.co.id
+                        mobilePhone: '121311221'
+                        membershipName: Santika Important Person
+                      - id: 952468
+                        memberNo: C-000101183
+                        cardNumber: '0145000407363577'
+                        outletCode: '10000'
+                        active: true
+                        email: albert@citis.co.id
+                        mobilePhone: '34567865456'
+                        membershipName: Gramedia
+                      - id: 1357762
+                        memberNo: SIP1067866
+                        cardNumber: SIP1067866
+                        outletCode: '0103839105'
+                        active: true
+                        email: albert@citis.co.id
+                        mobilePhone: '456789111'
+                        membershipName: Santika Important Person
+                      - id: 2234559
+                        memberNo: id12
+                        cardNumber: id12
+                        active: true
+                        email: albert2@oval.id
+                        membershipName: MyValue Third Party
+                      - id: 2235371
+                        memberNo: grmd121311113113131
+                        cardNumber: grmd121311113113131
+                        active: true
+                        email: alb@gmail.com
+                        membershipName: Gramedia Digital
+                    registerProvider: social login
+                    clientID: MyValueApp
+                    createdAt: '2021-12-30T03:23:35Z'
+              schema:
+                type: object
+                x-examples:
+                  Example 1:
+                    id: 7c9def0b-a6f2-4438-9f29-6855e48271ab
+                    valueID: VR8EPN
+                    email: albert@citis.co.id
+                    emailVerified: true
+                    mobilePhone: '1312133312121'
+                    mobilePhoneVerified: true
+                    active: true
+                    setPassword: true
+                    firstName: o l o l o l o l
+                    lastName: o l o l o l o l
+                    gender: M
+                    personalIdentityNo: '1231789'
+                    profession: Pelajar
+                    photo: 'https://staging-myvalue.ap-south-1.linodeobjects.com/avatar/7c9def0b-a6f2-4438-9f29-6855e48271ab.jpg'
+                    address: Jalan jalan No.111
+                    city:
+                      id: 1
+                      title: Nanggroe Aceh Darussalam (NAD)
+                    stateProvince:
+                      id: 1
+                      title: Kab. Aceh Barat
+                    district:
+                      id: 1
+                      title: Arongan Lambalek
+                    userMembership:
+                      - id: 2233422
+                        memberNo: VR8EPN
+                        cardNumber: VR8EPN
+                        outletCode: MVAPP00001
+                        active: true
+                        email: albert@citis.co.id
+                        mobilePhone: '2131212121231'
+                        membershipName: MyValue
+                      - id: 2233962
+                        memberNo: d56c918f1b945224f4a83c447da2d6af
+                        cardNumber: d56c918f1b945224f4a83c447da2d6af
+                        active: true
+                        email: initestmapping3.myvalue@mailnesia.com
+                        mobilePhone: '0812121212111'
+                        membershipName: MyValue Third Party
+                      - id: 2194799
+                        memberNo: SIP2194799
+                        cardNumber: SIP2194799
+                        outletCode: '10106'
+                        active: true
+                        email: albert@citis.co.id
+                        mobilePhone: '121311221'
+                        membershipName: Santika Important Person
+                      - id: 952468
+                        memberNo: C-000101183
+                        cardNumber: '0145000407363577'
+                        outletCode: '10000'
+                        active: true
+                        email: albert@citis.co.id
+                        mobilePhone: '34567865456'
+                        membershipName: Gramedia
+                      - id: 1357762
+                        memberNo: SIP1067866
+                        cardNumber: SIP1067866
+                        outletCode: '0103839105'
+                        active: true
+                        email: albert@citis.co.id
+                        mobilePhone: '456789111'
+                        membershipName: Santika Important Person
+                      - id: 2234559
+                        memberNo: id12
+                        cardNumber: id12
+                        active: true
+                        email: albert@citis.co.id
+                        membershipName: MyValue Third Party
+                      - id: 2235371
+                        memberNo: grmd121311113113131
+                        cardNumber: grmd121311113113131
+                        active: true
+                        email: alb@gmail.com
+                        membershipName: Gramedia Digital
+                    registerProvider: social login
+                    clientID: MyValueApp
+                    createdAt: '2021-12-30T03:23:35Z'
+                properties:
+                  id:
+                    type: string
+                  valueID:
+                    type: string
+                    description: Value id user
+                  email:
+                    type: string
+                  emailVerified:
+                    type: boolean
+                  mobilePhone:
+                    type: string
+                  mobilePhoneVerified:
+                    type: boolean
+                  active:
+                    type: boolean
+                  setPassword:
+                    type: boolean
+                  firstName:
+                    type: string
+                  lastName:
+                    type: string
+                  gender:
+                    type: string
+                  personalIdentityNo:
+                    type: string
+                  profession:
+                    type: string
+                  photo:
+                    type: string
+                  address:
+                    type: string
+                  city:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      title:
+                        type: string
+                  stateProvince:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      title:
+                        type: string
+                  district:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      title:
+                        type: string
+                  userMembership:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        memberNo:
+                          type: string
+                        cardNumber:
+                          type: string
+                        outletCode:
+                          type: string
+                        active:
+                          type: boolean
+                        email:
+                          type: string
+                        mobilePhone:
+                          type: string
+                        membershipName:
+                          type: string
+                  registerProvider:
+                    type: string
+                  clientID:
+                    type: string
+                  createdAt:
+                    type: string
+                required:
+                  - valueID
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  detail:
+                    type: string
+                  errorCode:
+                    type: integer
+                x-examples:
+                  Example 1:
+                    id: SAT003
+                    detail: Token yang Anda masukkan salah
+                    errorCode: 401
+              examples:
+                Akses token salah:
+                  value:
+                    id: SAT003
+                    detail: Token yang Anda masukkan salah
+                    errorCode: 401
+      description: Data user dapat diperoleh menggunakan endpoint ini. BU dapat melakukan mapping data dengan value id yang diperoleh dari respon.
